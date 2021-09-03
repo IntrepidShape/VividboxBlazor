@@ -6,7 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using VividboxBlazor.Client.Services.CategoryService;
+using VividboxBlazor.Server.Data;
 using VividboxBlazor.Server.Services.ProductService;
 using CategoryService = VividboxBlazor.Server.Services.CategoryService.CategoryService;
 using ICategoryService = VividboxBlazor.Server.Services.CategoryService.ICategoryService;
@@ -27,6 +29,10 @@ namespace VividboxBlazor.Server
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString(("DefaultConnection")));
+            });
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddScoped<ICategoryService, CategoryService>();
