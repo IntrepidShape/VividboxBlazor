@@ -3,68 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VividboxBlazor.Server.Data;
 
 namespace VividboxBlazor.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210903071705_ProductDateFix")]
+    partial class ProductDateFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("EditionProduct", b =>
-                {
-                    b.Property<int>("EditionsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EditionsId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("EditionProduct");
-
-                    b.HasData(
-                        new
-                        {
-                            EditionsId = 1,
-                            ProductsId = 1
-                        },
-                        new
-                        {
-                            EditionsId = 2,
-                            ProductsId = 1
-                        },
-                        new
-                        {
-                            EditionsId = 3,
-                            ProductsId = 1
-                        },
-                        new
-                        {
-                            EditionsId = 4,
-                            ProductsId = 2
-                        },
-                        new
-                        {
-                            EditionsId = 5,
-                            ProductsId = 2
-                        },
-                        new
-                        {
-                            EditionsId = 6,
-                            ProductsId = 2
-                        });
-                });
 
             modelBuilder.Entity("VividboxBlazor.Shared.Category", b =>
                 {
@@ -119,53 +74,6 @@ namespace VividboxBlazor.Server.Migrations
                             Icon = "monitor",
                             Name = "Computers",
                             Url = "Computers"
-                        });
-                });
-
-            modelBuilder.Entity("VividboxBlazor.Shared.Edition", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Editions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Paperback"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "E-Book"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "AudioBook"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "PC"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Playstation"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "XBox"
                         });
                 });
 
@@ -356,21 +264,6 @@ namespace VividboxBlazor.Server.Migrations
                             Price = 18.88m,
                             Title = "Half-Life 2"
                         });
-                });
-
-            modelBuilder.Entity("EditionProduct", b =>
-                {
-                    b.HasOne("VividboxBlazor.Shared.Edition", null)
-                        .WithMany()
-                        .HasForeignKey("EditionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VividboxBlazor.Shared.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("VividboxBlazor.Shared.Product", b =>

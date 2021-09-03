@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VividboxBlazor.Server.Data;
 
 namespace VividboxBlazor.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210903072427_Editions")]
+    partial class Editions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,38 +34,6 @@ namespace VividboxBlazor.Server.Migrations
                     b.HasIndex("ProductsId");
 
                     b.ToTable("EditionProduct");
-
-                    b.HasData(
-                        new
-                        {
-                            EditionsId = 1,
-                            ProductsId = 1
-                        },
-                        new
-                        {
-                            EditionsId = 2,
-                            ProductsId = 1
-                        },
-                        new
-                        {
-                            EditionsId = 3,
-                            ProductsId = 1
-                        },
-                        new
-                        {
-                            EditionsId = 4,
-                            ProductsId = 2
-                        },
-                        new
-                        {
-                            EditionsId = 5,
-                            ProductsId = 2
-                        },
-                        new
-                        {
-                            EditionsId = 6,
-                            ProductsId = 2
-                        });
                 });
 
             modelBuilder.Entity("VividboxBlazor.Shared.Category", b =>
@@ -135,38 +105,6 @@ namespace VividboxBlazor.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Editions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Paperback"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "E-Book"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "AudioBook"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "PC"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Playstation"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "XBox"
-                        });
                 });
 
             modelBuilder.Entity("VividboxBlazor.Shared.Product", b =>

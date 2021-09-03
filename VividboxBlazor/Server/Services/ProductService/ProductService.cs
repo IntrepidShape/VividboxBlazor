@@ -33,7 +33,8 @@ namespace VividboxBlazor.Server.Services.ProductService
 
         public async Task<Product> GetProduct(int Id)
         {
-            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == Id);
+            Product product = await _context.Products
+                .Include(p => p.Editions).FirstOrDefaultAsync(p => p.Id == Id);
             return product;
         }
         
