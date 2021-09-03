@@ -6,6 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using VividboxBlazor.Client.Services.CategoryService;
+using VividboxBlazor.Server.Services.ProductService;
+using CategoryService = VividboxBlazor.Server.Services.CategoryService.CategoryService;
+using ICategoryService = VividboxBlazor.Server.Services.CategoryService.ICategoryService;
 
 namespace VividboxBlazor.Server
 {
@@ -25,6 +29,8 @@ namespace VividboxBlazor.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -21,6 +21,7 @@ namespace VividboxBlazor.Client.Services.CategoryService
             Categories = await _http.GetFromJsonAsync<List<Category>>("api/Category");
 
         }
+
         
     }
 }

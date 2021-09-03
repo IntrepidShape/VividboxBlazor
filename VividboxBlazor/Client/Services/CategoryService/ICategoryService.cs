@@ -9,5 +9,6 @@ namespace VividboxBlazor.Client.Services.CategoryService
         public List<Category> Categories { get; set; }
 
         Task LoadCategories();
+        
     }
 }

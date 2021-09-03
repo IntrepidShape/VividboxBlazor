@@ -1,14 +1,14 @@
 ﻿@page "/"
 @page "/{categoryurl}"
 @inject ICategoryService CategoryService;
+@inject IProductService ProductService;
+
 @using System.Security.Cryptography.X509Certificates
 
 @if (category != null)
 {
     <h1>Welcome to the @category.Name Section!</h1>
-    <ProductList CategoryId="@category.Id" />
-    
-
+    <ProductList />
 }
 else
 {
@@ -25,8 +25,10 @@ else
     private Category category = null;
     
     
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
+        await ProductService.LoadProducts(CategoryUrl);
+        
         if(CategoryUrl != null)
         {
             category = CategoryService.Categories.FirstOrDefault(c => c.Url.ToLower().Equals(CategoryUrl.ToLower()));

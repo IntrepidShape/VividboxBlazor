@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using VividboxBlazor.Shared;
 
 namespace VividboxBlazor.Client.Services.ProductService
 {
     public interface IProductService
     {
-        public List<Product> Products { get; set; }
+        event Action OnChange;
+        List<Product> Products { get; set; }
 
-        public void LoadProducts()
-        {
-        }
+        Task LoadProducts(string categoryUrl = null);
+
+        Task<Product> GetProduct(int id);
     }
+
 }
