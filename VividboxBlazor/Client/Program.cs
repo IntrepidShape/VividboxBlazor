@@ -7,6 +7,10 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
+using Blazored.Toast;
+using Microsoft.AspNetCore.Components.Authorization;
+using VividboxBlazor.Client.Services.CartService;
 using VividboxBlazor.Client.Services.CategoryService;
 using VividboxBlazor.Client.Services.ProductService;
 
@@ -22,6 +26,13 @@ namespace VividboxBlazor.Client
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddBlazoredLocalStorage();
+            builder.Services.AddBlazoredToast();
+            builder.Services.AddOptions();
+            builder.Services.AddAuthorizationCore();
+            builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+            
             await builder.Build().RunAsync();
         }
     }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using Blazored.Toast;
 using Microsoft.EntityFrameworkCore;
 using VividboxBlazor.Client.Services.CategoryService;
 using VividboxBlazor.Server.Data;
@@ -37,6 +38,7 @@ namespace VividboxBlazor.Server
             services.AddRazorPages();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddBlazoredToast();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

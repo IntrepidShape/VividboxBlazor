@@ -9,169 +9,207 @@ namespace VividboxBlazor.Server.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            
+
         }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        
         public DbSet<Edition> Editions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductVariant>()
-                .HasKey(p => new {p.ProductId,p.EditionId});
-            
+                .HasKey(p => new { p.ProductId, p.EditionId });
+
             modelBuilder.Entity<Category>().HasData(
-                new Category() { Id = 1, Name = "Books", Url = "Books", Icon = "book" },
-                new Category() { Id = 2, Name = "Games", Url = "Games", Icon = "aperture" },
-                new Category() { Id = 3, Name = "Computers", Url = "Computers", Icon = "monitor" }
+                new Category { Id = 1, Name = "Books", Url = "books", Icon = "book" },
+                new Category { Id = 2, Name = "Electronics", Url = "electronics", Icon = "camera-slr" },
+                new Category { Id = 3, Name = "Video Games", Url = "video-games", Icon = "aperture" }
             );
-            
+
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
                     Id = 1,
                     CategoryId = 1,
-                    Title = "The Hitchhikers's Guide to the Galaxy",
-                    Description = "Here is where the description goes yada yada yada, It can be long.",
+                    Title = "The Hitchhiker's Guide to the Galaxy",
+                    Description = "The Hitchhiker's Guide to the Galaxy (sometimes referred to as HG2G, HHGTTG, H2G2, or tHGttG) is a comedy science fiction series created by Douglas Adams.",
                     Image = "https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
-                    Price = 9.99m,
-                    OriginalPrice = 19.99m,
-                    DateCreated = new DateTime(2021,9,2)
-                }, new Product
+                    DateCreated = new DateTime(2021, 1, 1)
+                },
+                new Product
                 {
                     Id = 2,
-                    CategoryId = 2,
-                    Title = "Half-Life 2",
-                    Description = "Half-Life 2, stylized as HλLF-LIFE2, is a science fiction first-person shooter developed and published by Valve Corporation, and released on November 16, 2004,[1] following an extended development period of five years. The game garnered near-unanimous positive reviews and received critical acclaim, winning over 30 Game of the Year awards. It is included in The Orange Box for the Xbox 360, PS3, and PC. It was also included for the Original Xbox on November 17th 2005.",
-                    Image = "https://upload.wikimedia.org/wikipedia/en/2/2d/Half-Life_2_Episode_Two_title.jpg",
-                    Price = 18.88m,
-                    OriginalPrice = 29.99m,
-                    DateCreated = new DateTime(2021,9,2)
-                }, new Product
+                    CategoryId = 1,
+                    Title = "Ready Player One",
+                    Description = "Ready Player One is a 2011 science fiction novel, and the debut novel of American author Ernest Cline. The story, set in a dystopia in 2045, follows protagonist Wade Watts on his search for an Easter egg in a worldwide virtual reality game, the discovery of which would lead him to inherit the game creator's fortune.",
+                    Image = "https://upload.wikimedia.org/wikipedia/en/a/a4/Ready_Player_One_cover.jpg",
+                    DateCreated = new DateTime(2021, 1, 1)
+                },
+                new Product
                 {
                     Id = 3,
-                    CategoryId = 3,
-                    Title = "AMD Guardian Gaming PC Ryzen 5 RTX3060 1TB SSD 16G",
-                    Description = "Custom build AMD Guardian series Gaming PC.   Featuring the latest AMD Ryzen 5 5600X CPU, nVidia RTX3060 video card, 1TB NVME M.2 SSD, 16GB DDR4 memory.    Best suited for regular gamers with best price/performance ratio.",
-                    Image = "https://www.compuworld.com.au/app/webroot/stuff/product_image/productImage_5692650061624521489.jpg",
-                    
-                    DateCreated = new DateTime(2021,9,2)
-                },new Product
+                    CategoryId = 1,
+                    Title = "Nineteen Eighty-Four",
+                    Description = "Nineteen Eighty-Four: A Novel, often published as 1984, is a dystopian social science fiction novel by English novelist George Orwell. It was published on 8 June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime.",
+                    Image = "https://upload.wikimedia.org/wikipedia/en/c/c3/1984first.jpg",
+                    DateCreated = new DateTime(2021, 1, 1)
+                },
+                new Product
                 {
                     Id = 4,
-                    CategoryId = 3,
-                    Title = "AMD Guardian Gaming PC Ryzen 7 RTX3070 Ti 1TB SSD 16G",
-                    Description = "AMD Guardian RTX3070 Ti Ryzen 7 Gaming PC. Nvidia RTX3070 Ti video card, Ryzen 7 5800X CPU, 1TB NVME SSD, 16G Ram, 240mm AIO water cooling.",
-                    Image = "https://www.compuworld.com.au/app/webroot/stuff/product_image/productImage_2454617561624413498.jpg",
-                    Price = 3362.59m,
-                    OriginalPrice = 3973.97m,
-                    DateCreated = new DateTime(2021,9,2)
-                },new Product
+                    CategoryId = 2,
+                    Title = "Pentax Spotmatic",
+                    Description = "The Pentax Spotmatic refers to a family of 35mm single-lens reflex cameras manufactured by the Asahi Optical Co. Ltd., later known as Pentax Corporation, between 1964 and 1976.",
+                    Image = "https://upload.wikimedia.org/wikipedia/commons/e/e9/Honeywell-Pentax-Spotmatic.jpg",
+                    DateCreated = new DateTime(2021, 1, 1)
+                },
+                new Product
                 {
                     Id = 5,
-                    CategoryId = 3,
-                    Title = "AMD Devastor Gaming PC RTX3080 Ryzen 7 1TB SSD 16G",
-                    Description = "Devastor RTX3080 AMD Ryzen 7 Gaming PC. Ryzen 7 5800X 8 Core CPU, RTX3080 video card, 1TB NVME SSD, 16GB memory.",
-                    Image = "https://www.compuworld.com.au/app/webroot/stuff/product_image/productImage_9626281801626400576.jpg",
-                    Price = 3991.79m,
-                    OriginalPrice = 4717.57m,
-                    DateCreated = new DateTime(2021,9,2)
-                },new Product
+                    CategoryId = 2,
+                    Title = "Xbox",
+                    Description = "The Xbox is a home video game console and the first installment in the Xbox series of video game consoles manufactured by Microsoft.",
+                    Image = "https://upload.wikimedia.org/wikipedia/commons/4/43/Xbox-console.jpg",
+                    DateCreated = new DateTime(2021, 1, 1)
+                },
+                new Product
                 {
                     Id = 6,
+                    CategoryId = 2,
+                    Title = "Super Nintendo Entertainment System",
+                    Description = "The Super Nintendo Entertainment System (SNES), also known as the Super NES or Super Nintendo, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea.",
+                    Image = "https://upload.wikimedia.org/wikipedia/commons/e/ee/Nintendo-Super-Famicom-Set-FL.jpg",
+                    DateCreated = new DateTime(2021, 1, 1)
+                },
+                new Product
+                {
+                    Id = 7,
                     CategoryId = 3,
-                    Title = "Intel Devastor Gaming PC RTX3080 Ti X-Series i9 2TB SSD 16G",
-                    Description = "Devastor RTX3080 Ti Gaming PC. With Intel Core i9 X Series CPU, new RTX3080 Ti video card, 2TB NVME SSD, 16G memory, ARGB All in one 360mm water cooling!",
-                    Image = "https://www.compuworld.com.au/app/webroot/stuff/product_image/productImage_2509428591624518566.jpg",
-                    Price = 5528.49m,
-                    OriginalPrice = 6533.67m,
-                    DateCreated = new DateTime(2021,9,2)
+                    Title = "Half-Life 2",
+                    Description = "Half-Life 2 is a 2004 first-person shooter game developed and published by Valve. Like the original Half-Life, it combines shooting, puzzles, and storytelling, and adds features such as vehicles and physics-based gameplay.",
+                    Image = "https://upload.wikimedia.org/wikipedia/en/2/25/Half-Life_2_cover.jpg",
+                    DateCreated = new DateTime(2021, 1, 1)
+                },
+                new Product
+                {
+                    Id = 8,
+                    CategoryId = 3,
+                    Title = "Diablo II",
+                    Description = "Diablo II is an action role-playing hack-and-slash computer video game developed by Blizzard North and published by Blizzard Entertainment in 2000 for Microsoft Windows, Classic Mac OS, and macOS.",
+                    Image = "https://upload.wikimedia.org/wikipedia/en/d/d5/Diablo_II_Coverart.png",
+                    DateCreated = new DateTime(2021, 1, 1)
+                },
+                new Product
+                {
+                    Id = 9,
+                    CategoryId = 3,
+                    Title = "Day of the Tentacle",
+                    Description = "Day of the Tentacle, also known as Maniac Mansion II: Day of the Tentacle, is a 1993 graphic adventure game developed and published by LucasArts. It is the sequel to the 1987 game Maniac Mansion.",
+                    Image = "https://upload.wikimedia.org/wikipedia/en/7/79/Day_of_the_Tentacle_artwork.jpg",
+                    DateCreated = new DateTime(2021, 1, 1)
                 }
             );
 
             modelBuilder.Entity<Edition>().HasData(
-                new Edition {Id = 1, Name = "Paperback"},
-                new Edition {Id = 2, Name = "E-Book"},
-                new Edition {Id = 3, Name = "AudioBook"},
-                new Edition {Id = 4, Name = "PC"},
-                new Edition {Id = 5, Name = "Playstation"},
-                new Edition {Id = 6, Name = "XBox"},
-                new Edition {Id = 7, Name = "Tier 1"},
-                new Edition {Id = 8, Name = "Tier 2"},
-                new Edition {Id = 9, Name = "Tier 3"},
-                new Edition {Id = 10, Name = "Tier 4"}
-            );
-            modelBuilder.Entity<Edition>().HasData(
+                    new Edition { Id = 1, Name = "Default" },
+                    new Edition { Id = 2, Name = "Paperback" },
+                    new Edition { Id = 3, Name = "E-Book" },
+                    new Edition { Id = 4, Name = "Audiobook" },
+                    new Edition { Id = 5, Name = "PC" },
+                    new Edition { Id = 6, Name = "PlayStation" },
+                    new Edition { Id = 7, Name = "Xbox" }
+                );
+
+            modelBuilder.Entity<ProductVariant>().HasData(
                 new ProductVariant
-                {
-                    ProductId = 1,
-                    EditionId = 1,
-                    Price = 9.99m,
-                    OriginalPrice = 19.99m
-                }, new ProductVariant
                 {
                     ProductId = 1,
                     EditionId = 2,
                     Price = 9.99m,
                     OriginalPrice = 19.99m
-                }, new ProductVariant
+                },
+                new ProductVariant
                 {
                     ProductId = 1,
                     EditionId = 3,
-                    Price = 9.99m,
-                    OriginalPrice = 19.99m
-                }, new ProductVariant
+                    Price = 7.99m
+                },
+                new ProductVariant
                 {
                     ProductId = 1,
-                    EditionId = 3,
-                    Price = 9.99m,
-                    OriginalPrice = 19.99m
-                },new ProductVariant
-                {
-                    ProductId = 2,
                     EditionId = 4,
-                    Price = 2176.79m,
-                    OriginalPrice = 2572.57m,
-                }, new ProductVariant
+                    Price = 19.99m,
+                    OriginalPrice = 29.99m
+                },
+                new ProductVariant
                 {
                     ProductId = 2,
-                    EditionId = 5,
-                    Price = 9.99m,
-                    OriginalPrice = 19.99m
-                }, new ProductVariant
-                {
-                    ProductId = 2,
-                    EditionId = 6,
-                    Price = 9.99m,
-                    OriginalPrice = 19.99m
-                }, new ProductVariant
+                    EditionId = 2,
+                    Price = 7.99m,
+                    OriginalPrice = 14.99m
+                },
+                new ProductVariant
                 {
                     ProductId = 3,
-                    EditionId = 7,
-                    Price = 9.99m,
-                    OriginalPrice = 19.99m
-                }, new ProductVariant
+                    EditionId = 2,
+                    Price = 6.99m
+                },
+                new ProductVariant
                 {
                     ProductId = 4,
-                    EditionId = 8,
-                    Price = 9.99m,
-                    OriginalPrice = 19.99m
-                }, new ProductVariant
+                    EditionId = 1,
+                    Price = 166.66m,
+                    OriginalPrice = 249.00m
+                },
+                new ProductVariant
                 {
                     ProductId = 5,
-                    EditionId = 9,
-                    Price = 9.99m,
-                    OriginalPrice = 19.99m
-                }, new ProductVariant
+                    EditionId = 1,
+                    Price = 159.99m,
+                    OriginalPrice = 299m
+                },
+                new ProductVariant
                 {
                     ProductId = 6,
-                    EditionId = 10,
+                    EditionId = 1,
+                    Price = 73.74m,
+                    OriginalPrice = 400m
+                },
+                new ProductVariant
+                {
+                    ProductId = 7,
+                    EditionId = 5,
+                    Price = 19.99m,
+                    OriginalPrice = 29.99m
+                },
+                new ProductVariant
+                {
+                    ProductId = 7,
+                    EditionId = 6,
+                    Price = 69.99m
+                },
+                new ProductVariant
+                {
+                    ProductId = 7,
+                    EditionId = 7,
+                    Price = 49.99m,
+                    OriginalPrice = 59.99m
+                },
+                new ProductVariant
+                {
+                    ProductId = 8,
+                    EditionId = 5,
                     Price = 9.99m,
-                    OriginalPrice = 19.99m
+                    OriginalPrice = 24.99m,
+                },
+                new ProductVariant
+                {
+                    ProductId = 9,
+                    EditionId = 5,
+                    Price = 14.99m
                 }
-                );
+            );
         }
     }
 }

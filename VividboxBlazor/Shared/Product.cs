@@ -17,7 +17,7 @@ namespace VividboxBlazor.Shared
         public Category Category { get; set; }
         public int CategoryId { get; set; }
 
-        public List<Edition> ProductVeriant { get; set; }
+        public List<ProductVariant> Variants { get; set; } = new List<ProductVariant>();
 
         public DateTime? DateCreated { get; set; } = DateTime.Now;
         public DateTime? DateUpdated { get; set; }
